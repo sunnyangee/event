@@ -86,9 +86,9 @@
     const textBox = document.getElementById('text-box');
     let isClicked = false;
 
-    const mainTexture = textureLoader.load('sd/textures/material_baseColor.jpeg');
+    const mainTexture = textureLoader.load('/sd/textures/material_baseColor.jpeg');
 
-    loader.load('sd/scene.gltf', (gltf) => {
+    loader.load('/sd/scene.gltf', (gltf) => {
       mainModel = gltf.scene;
 
       mainModel.traverse((child) => {
@@ -106,7 +106,7 @@
       mainModel.rotation.z = Math.PI / 4;
     });
 
-    loader.load('tunnel/scene.gltf', (gltf) => {
+    loader.load('/tunnel/scene.gltf', (gltf) => {
       backgroundModel = gltf.scene;
 
       scene.add(backgroundModel);
