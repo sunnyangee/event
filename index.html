@@ -49,7 +49,7 @@
       width: 100%;
       height: 100%;
       background-color: rgba(0, 0, 0, 0.8);
-      display: flex;
+      display: none;
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -130,6 +130,7 @@
     const textureLoader = new THREE.TextureLoader();
     let mainModel, backgroundModel;
     const textBox = document.getElementById('text-box');
+    const passwordOverlay = document.getElementById('password-overlay');
     let isClicked = false;
 
     const mainTexture = textureLoader.load('sd/textures/material_baseColor.jpeg');
@@ -188,23 +189,29 @@
       setTimeout(callback, 500);
     }
 
+    function handleInteraction() {
+      passwordOverlay.style.display = 'flex';
+    }
+
+    document.body.addEventListener('click', handleInteraction, { once: true });
+
     document.getElementById('password-button').addEventListener('click', () => {
       const passwordInput = document.getElementById('password-input').value;
       if (passwordInput === '2130') {
-        document.getElementById('password-overlay').style.display = 'none';
+        passwordOverlay.style.display = 'none';
         textBox.style.display = 'block';
         textBox.style.transform = "translate(-50%, -50%) scale(1)";
         textBox.style.opacity = "1";
 
-        window.addEventListener('click', handleInteraction);
-        window.addEventListener('touchstart', handleInteraction);
+        window.addEventListener('click', showLoadingText);
+        window.addEventListener('touchstart', showLoadingText);
       } else {
         alert('비밀번호가 잘못되었습니다. 다시 시도하세요.');
         document.getElementById('password-input').value = '';
       }
     });
 
-    function handleInteraction() {
+    function showLoadingText() {
       if (mainModel && !isClicked) {
         isClicked = true;
 
