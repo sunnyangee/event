@@ -59,8 +59,8 @@
 <body>
   <div id="text-box">정보가 로딩되고 있습니다...</div>
   <script type="module">
-    import * as THREE from './js/three';
-    import { GLTFLoader } from './js/three/examples/jsm/loaders/GLTFLoader.js';
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -86,9 +86,9 @@
     const textBox = document.getElementById('text-box');
     let isClicked = false;
 
-    const mainTexture = textureLoader.load('./public/sd/textures/material_baseColor.jpeg');
+    const mainTexture = textureLoader.load('./sd/textures/material_baseColor.jpeg');
 
-    loader.load('./public/sd/scene.gltf', (gltf) => {
+    loader.load('./sd/scene.gltf', (gltf) => {
       mainModel = gltf.scene;
 
       mainModel.traverse((child) => {
